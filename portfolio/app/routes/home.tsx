@@ -39,10 +39,13 @@ export default function Index() {
   }, []);
 
   const filteredProjects = activeSkill
-    ? projects.filter((p) =>
-        p.skills.toLowerCase().includes(activeSkill.toLowerCase())
-      )
-    : projects;
+  ? projects.filter((p) =>
+      p.skills
+        .split(",")
+        .map((s) => s.trim())
+        .includes(activeSkill)
+    )
+  : projects;
 
   const allSkills = Array.from(
     new Set(
